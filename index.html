@@ -80,13 +80,13 @@
   .qtab.active{ background:var(--gold); color:#14171a; }
   .addOT{ background:var(--panel-2); border-radius:8px; padding:11px 14px; font-size:14px; color:var(--ink-dim); }
   .topbar .spacer{ flex:1; }
-  .scoreboard{ display:flex; align-items:center; gap:12px; font-family:'Oswald',sans-serif; font-size:16px; color:var(--ink-dim); background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:4px 18px; }
+  .scoreboard{ display:flex; align-items:center; gap:18px; font-family:'Oswald',sans-serif; font-size:16px; color:var(--ink-dim); background:var(--panel-2); border:1px solid var(--line); border-radius:10px; padding:6px 26px; }
   .scoreboard .sb-name{ max-width:140px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:600; }
   .scoreboard .sb-name.home{ color:var(--home); }
   .scoreboard .sb-name.away{ color:var(--away); }
-  .scoreboard .sb-score{ font-size:34px; font-weight:700; color:var(--ink); line-height:1.1; min-width:44px; text-align:center; }
+  .scoreboard .sb-score{ font-size:36px; font-weight:700; color:var(--ink); line-height:1.25; min-width:64px; text-align:center; letter-spacing:1px; }
   .scoreboard .sb-sep{ color:var(--ink-dim); opacity:.5; }
-  .scoreboard .sb-fouls{ font-size:12px; color:var(--ink-dim); margin-left:6px; padding-left:12px; border-left:1px solid var(--line); font-family:'Inter',sans-serif; }
+  .scoreboard .sb-fouls{ font-size:12px; color:var(--ink-dim); margin-left:8px; padding-left:18px; border-left:1px solid var(--line); font-family:'Inter',sans-serif; white-space:nowrap; }
   #undoBtn{ background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:11px 16px; font-weight:700; font-size:14px; }
   #undoBtn:disabled{ opacity:.35; }
   #boxScoreBtn{ background:var(--panel-2); border:1px solid var(--gold); color:var(--gold); border-radius:8px; padding:11px 16px; font-weight:700; font-size:14px; }
@@ -119,24 +119,26 @@
   .ptbtns button{ flex:1; min-height:44px; background:var(--panel-2); border-radius:9px; font-weight:700; font-size:clamp(20px,3.4vh,30px); }
   .side.home .ptbtns button{ color:var(--home); } .side.home .ptbtns button:active{ background:var(--home); color:#fff; }
   .side.away .ptbtns button{ color:var(--away); } .side.away .ptbtns button:active{ background:var(--away); color:#fff; }
-  .rowbtns{ display:flex; gap:6px; flex:0 0 clamp(48px,7.5vh,64px); }
-  .rowbtns button{ flex:1; border-radius:9px; font-size:clamp(14px,2.1vh,17px); font-weight:700; }
+  .pcard{ position:relative; }
+  .rowbtns{ display:flex; flex:0 0 clamp(64px,10.5vh,88px); }
+  .rowbtns button{ flex:1; border-radius:10px; font-size:clamp(20px,3.2vh,28px); font-weight:700; }
   .foulbtn{ background:var(--panel-2); color:var(--gold); }
   .foulbtn:active{ background:var(--gold); color:#14171a; }
-  .outbtn{ background:var(--panel-2); color:var(--ink-dim); }
-  .outbtn.pending-active{ background:var(--gold); color:#14171a; }
+  .subover{ position:absolute; inset:0; border-radius:12px; background:rgba(20,23,26,.72); box-shadow:0 0 0 3px var(--gold) inset; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--gold); font-family:'Oswald',sans-serif; font-weight:700; font-size:clamp(20px,3.4vh,30px); line-height:1.15; letter-spacing:.5px; }
+  .subover:active{ background:var(--gold); color:#14171a; }
 
   .bench-label{ font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--ink-dim); margin:0 0 4px; flex-shrink:0; }
   .bench{ flex:0 0 auto; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-top:1px solid var(--line); border-left:1px solid var(--line); }
-  .bcell{ border-right:1px solid var(--line); border-bottom:1px solid var(--line); min-height:54px; padding:5px 8px; display:flex; align-items:center; gap:8px; min-width:0; }
-  .bcell .bnum{ font-family:'Oswald',sans-serif; font-size:24px; font-weight:700; min-width:30px; text-align:center; }
-  .bcell .btext{ min-width:0; line-height:1.15; }
-  .bcell .bname{ font-size:13px; font-weight:600; overflow-wrap:anywhere; }
-  .bcell .bstats{ font-size:11px; color:var(--ink-dim); }
-  .bcell.ready{ background:rgba(227,172,61,.16); }
-  .bcell.ready:active{ background:var(--gold); }
-  .bcell.ready:active .bnum, .bcell.ready:active .bname, .bcell.ready:active .bstats{ color:#14171a; }
+  .bcell{ border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:6px 7px 7px; display:flex; flex-direction:column; gap:6px; min-width:0; }
+  .bcell .bhead{ display:flex; align-items:center; gap:7px; min-height:30px; min-width:0; }
+  .bcell .bnum{ font-family:'Oswald',sans-serif; font-size:24px; font-weight:700; min-width:28px; text-align:center; line-height:1; }
+  .bcell .bname{ font-size:13px; font-weight:600; line-height:1.1; overflow-wrap:anywhere; min-width:0; }
+  .subbtn{ width:100%; height:34px; border-radius:7px; background:var(--home); color:#fff; font-weight:700; font-size:15px; letter-spacing:.4px; }
+  .subbtn:active{ filter:brightness(1.25); }
+  .bcell.picked{ background:rgba(227,172,61,.16); }
+  .bcell.picked .subbtn{ background:var(--gold); color:#14171a; }
   .bcell.foulout .bnum, .bcell.foulout .bname{ color:var(--danger); }
+  .bcell.foulout .subbtn{ background:var(--panel-2); color:var(--danger); border:1px solid var(--danger); opacity:.7; }
 
   .toast{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--panel); border:1px solid var(--gold); color:var(--gold); padding:10px 20px; border-radius:22px; font-size:15px; font-weight:600; z-index:40; }
 
@@ -386,19 +388,21 @@ function addFoul(team, idx){
   if(p.fouls===5) showToast(`#${p.num} has fouled out`);
   renderGame();
 }
-function toggleOut(team, idx){
-  if(pendingSub && pendingSub.team===team && pendingSub.idx===idx){
+function toggleSub(team, benchIdx){
+  const p = state[team].players[benchIdx];
+  if(p.fouls>=5){ showToast(`#${p.num} has fouled out`); return; }
+  if(pendingSub && pendingSub.team===team && pendingSub.benchIdx===benchIdx){
     pendingSub = null;
   } else {
-    pendingSub = { team, idx };
+    pendingSub = { team, benchIdx };
   }
   renderGame();
 }
-function subIn(team, benchIdx){
-  if(!pendingSub || pendingSub.team!==team){ showToast('Tap "Out" on a player first'); return; }
+function completeSub(team, courtIdx){
+  if(!pendingSub || pendingSub.team!==team) return;
   snapshot();
-  state[team].players[pendingSub.idx].onCourt = false;
-  state[team].players[benchIdx].onCourt = true;
+  state[team].players[courtIdx].onCourt = false;
+  state[team].players[pendingSub.benchIdx].onCourt = true;
   pendingSub = null;
   renderGame();
 }
@@ -462,7 +466,7 @@ function renderSide(team){
 
   const onCourt = t.players.map((p,i)=>({p,i})).filter(x=>x.p.onCourt);
   const bench = t.players.map((p,i)=>({p,i})).filter(x=>!x.p.onCourt);
-  const ready = pendingSub && pendingSub.team===team;
+  const picking = pendingSub && pendingSub.team===team;
 
   const side = document.getElementById(team+'Side');
   side.innerHTML = `
@@ -475,10 +479,9 @@ function renderSide(team){
     </div>
     <div class="oncourt">
       ${onCourt.map(({p,i})=>{
-        const pending = pendingSub && pendingSub.team===team && pendingSub.idx===i;
         const fc = p.fouls>=5?'fout':(p.fouls===4?'fbad':'');
         return `
-        <div class="pcard ${pending?'pending':''} ${p.fouls>=5?'fouled-out':''}">
+        <div class="pcard ${p.fouls>=5?'fouled-out':''}">
           <div class="pnum">${p.num}</div>
           <div class="pname">${p.name||''}</div>
           <div class="stats">
@@ -492,18 +495,21 @@ function renderSide(team){
           </div>
           <div class="rowbtns">
             <button class="foulbtn" onclick="addFoul('${team}',${i})">Foul</button>
-            <button class="outbtn ${pending?'pending-active':''}" onclick="toggleOut('${team}',${i})">${pending?'Cancel':'Out'}</button>
           </div>
+          ${picking ? `<div class="subover" onclick="completeSub('${team}',${i})">TAP TO<br>SUB OUT</div>` : ''}
         </div>`;
       }).join('')}
     </div>
-    <div class="bench-label">Bench ${ready?'— tap who goes in':'— tap Out above first'}</div>
+    <div class="bench-label">Bench ${picking?'— now tap who comes out above':'— tap Sub, then tap who comes out'}</div>
     <div class="bench">
-      ${bench.map(({p,i})=>`
-        <div class="bcell ${p.fouls>=5?'foulout':''} ${ready?'ready':''}" onclick="subIn('${team}',${i})">
-          <div class="bnum">${p.num}</div>
-          <div class="btext"><div class="bname">${p.name||''}</div><div class="bstats">${p.points} pts · ${p.fouls} F</div></div>
-        </div>`).join('')}
+      ${bench.map(({p,i})=>{
+        const picked = picking && pendingSub.benchIdx===i;
+        return `
+        <div class="bcell ${p.fouls>=5?'foulout':''} ${picked?'picked':''}">
+          <div class="bhead"><div class="bnum">${p.num}</div><div class="bname">${p.name||''}</div></div>
+          <button class="subbtn" onclick="toggleSub('${team}',${i})">${picked?'Cancel':(p.fouls>=5?'Fouled out':'Sub')}</button>
+        </div>`;
+      }).join('')}
     </div>
   `;
 }
