@@ -128,7 +128,7 @@
   .subover:active{ background:var(--gold); color:#14171a; }
 
   .bench-label{ font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--ink-dim); margin:0 0 4px; flex-shrink:0; }
-  .bench{ flex:0 0 auto; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); border-top:1px solid var(--line); border-left:1px solid var(--line); }
+  .bench{ flex:0 0 auto; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); grid-auto-rows:86px; align-content:start; min-height:calc(var(--benchrows,1) * 86px + 1px); border-top:1px solid var(--line); border-left:1px solid var(--line); }
   .bcell{ border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:6px 7px 7px; display:flex; flex-direction:column; gap:6px; min-width:0; }
   .bcell .bhead{ display:flex; align-items:center; gap:7px; min-height:30px; min-width:0; }
   .bcell .bnum{ font-family:'Oswald',sans-serif; font-size:24px; font-weight:700; min-width:28px; text-align:center; line-height:1; }
@@ -453,6 +453,8 @@ function renderGame(){
   }
   qtabs.innerHTML = tabs;
 
+  const benchRows = Math.max(1, ...['home','away'].map(t=>Math.ceil(state[t].players.filter(p=>!p.onCourt).length/5)));
+  document.querySelector('.court').style.setProperty('--benchrows', benchRows);
   renderSide('home');
   renderSide('away');
 }
